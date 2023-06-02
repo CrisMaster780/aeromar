@@ -1,23 +1,28 @@
 from django.shortcuts import render
+from .models import Caso, Cliente
+import sweetify
 
 
 def home(request):
-    if request.method == 'GET':
-        codigo_caso = request.GET.get('caso')
+    if request.method == "GET":
+        codigo_caso = request.GET.get("caso")
         print(codigo_caso)
-        caso = [
-            'CAS-PRUEBA',
-            'PRUEBA CRISTOBAL'
-            'ACTIVO',
-            'REPUESTOS'
-        ]
-        if caso[0] == codigo_caso:
-
-            return render(request, 'index.html', {
-                "codigo": caso,
-            })
+        caso = Caso.objects.filter(codigo_caso=codigo_caso)
+        if caso:
+            return render(
+                request,
+                "index.html",
+                {
+                    "codigo": caso,
+                },
+            )
         else:
-            print("El código del caso no existe en el diccionario.")
-            return render(request, 'index.html', {
-                "codigo": '',
-            })
+            mensaje = "No se encontro un caso con ese Numero"
+            return render(
+                request,
+                "index.html",
+                {
+                    "codigo": "",
+                    "mensaje": mensaje,
+                },
+            )
