@@ -6,6 +6,7 @@ class Cliente (models.Model):
     apellido = models.CharField(max_length=250, null=True, blank=True)
     direccion = models.CharField(max_length=250, null=True, blank=True)
     telefono = models.CharField(max_length=250, null=True, blank=True)
+    correo = models.CharField(max_length=250, null=True, blank=True)
     estado = models.BooleanField(default=True)
     
 class Caso (models.Model):

@@ -38,7 +38,7 @@ def correo(request):
     if request.method == "POST":
         correo_caso = request.POST.get("correo")
         print(correo_caso)
-        caso = Caso.objects.filter(codigo_caso=correo_caso)
+        caso = Caso.objects.filter(cliente__correo=correo_caso)
         if caso:
             return render(
                 request,
