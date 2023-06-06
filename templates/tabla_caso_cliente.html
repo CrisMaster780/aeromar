@@ -8,6 +8,8 @@
                     <th scope="col">Cliente</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Telefono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Caso</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Departamento</th>
                 </tr>
@@ -18,7 +20,10 @@
                 <td>{{ res.codigo_caso }}</td>
                 <td>{{ res.cliente.nombre}}</td>
                 <td>{{ res.cliente.direccion}}</td>
+                <td>{{ res.cliente.correo}}</td>
                 <td>{{ res.cliente.telefono}}</td>
+                <td>{{ res.observacion}}</td>
+
                 <td>
                     {% if res.estado == True %}
                     Activo

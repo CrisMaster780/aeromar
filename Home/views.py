@@ -18,7 +18,7 @@ def home(request):
                 },
             )
         else:
-            mensaje = "No se encontro un caso con ese Numero"
+            mensaje = "No se encontró un caso con ese Número de Caso"
             return render(
                 request,
                 "index.html",
@@ -49,7 +49,7 @@ def correo(request):
                 },
             )
         else:
-            mensaje = "No se encontro ningun caso asociado a ese correo"
+            mensaje = "No se encontró ningún caso asociado a ese Correo"
             return render(
                 request,
                 "consulta_correo.html",
