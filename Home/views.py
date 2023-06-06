@@ -4,8 +4,8 @@ import sweetify
 
 
 def home(request):
-    if request.method == "GET":
-        codigo_caso = request.GET.get("caso")
+    if request.method == "POST":
+        codigo_caso = request.POST.get("caso")
         print(codigo_caso)
         caso = Caso.objects.filter(codigo_caso=codigo_caso)
         if caso:
@@ -14,6 +14,7 @@ def home(request):
                 "index.html",
                 {
                     "codigo": caso,
+                    "consulta_cliente":'ConsultaCliente'
                 },
             )
         else:
@@ -23,6 +24,43 @@ def home(request):
                 "index.html",
                 {
                     "codigo": "",
+                    
                     "mensaje": mensaje,
                 },
             )
+    else:
+        return render(
+            request,
+            "index.html",
+        )
+    
+def correo(request):
+    if request.method == "POST":
+        correo_caso = request.POST.get("correo")
+        print(correo_caso)
+        caso = Caso.objects.filter(codigo_caso=correo_caso)
+        if caso:
+            return render(
+                request,
+                "consulta_correo.html",
+                {
+                    "codigo": caso,
+                    "consulta_correo":'ConsultaCorreo'
+                },
+            )
+        else:
+            mensaje = "No se encontro ningun caso asociado a ese correo"
+            return render(
+                request,
+                "consulta_correo.html",
+                {
+                    "codigo": "",
+                    "mensaje": mensaje,
+                },
+            )
+    else:
+        return render(
+            request,
+            "consulta_correo.html",
+        )
+
